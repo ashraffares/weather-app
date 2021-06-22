@@ -1,6 +1,4 @@
 const path = require('path');
-const webpack = require('webpack');
-// const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
   entry: './src/index.js',
@@ -28,11 +26,10 @@ module.exports = {
         },
       },
       {
-        test: /\.s[ac]ss$/i,
+        test: /\.css$/i,
         use: [
           'style-loader',
           'css-loader',
-          'sass-loader',
         ],
       },
       {
@@ -53,10 +50,4 @@ module.exports = {
       },
     ],
   },
-  plugins: [
-    new webpack.DefinePlugin({
-      'typeof CANVAS_RENDERER': JSON.stringify(true),
-      'typeof WEBGL_RENDERER': JSON.stringify(true),
-    }),
-  ],
 };

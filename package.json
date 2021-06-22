@@ -1,35 +1,10 @@
 {
-  "name": "weather_app",
+  "name": "wapp",
   "version": "1.0.0",
-  "description": "use weather api and display weather data for location entry.",
-  "main": "index.js",
-  "dependencies": {
-    "@jest/globals": "^26.6.2",
-    "jest": "^26.6.3"
-  },
-  "devDependencies": {
-    "@babel/core": "^7.14.3",
-    "@babel/plugin-transform-modules-commonjs": "^7.14.0",
-    "@babel/preset-env": "^7.14.2",
-    "babel-eslint": "^10.1.0",
-    "babel-loader": "^8.2.2",
-    "copy-webpack-plugin": "^9.0.0",
-    "css-loader": "^5.2.4",
-    "eslint": "^7.26.0",
-    "eslint-config-airbnb-base": "^14.2.1",
-    "eslint-plugin-import": "^2.23.2",
-    "file-loader": "^6.2.0",
-    "postcss": "^8.3.0",
-    "sass": "^1.32.13",
-    "sass-loader": "^11.1.1",
-    "style-loader": "^2.0.0",
-    "stylelint": "^13.13.1",
-    "stylelint-config-standard": "^21.0.0",
-    "stylelint-csstree-validator": "^1.9.0",
-    "stylelint-scss": "^3.19.0",
-    "webpack": "^5.37.1",
-    "webpack-cli": "^4.7.0",
-    "webpack-dev-server": "^3.11.2"
+  "description": "",
+  "main": "webpack.config.js",
+  "directories": {
+    "test": "test"
   },
   "scripts": {
     "test": "jest",
@@ -40,13 +15,32 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ashraffares/todolist "
+    "url": "git+https://github.com/ashraffares/weather-app.git"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "faresashraf <ashraffares090@gmail.com>",
+  "license": "MIT",
   "bugs": {
-    "url": "https://github.com/ashraffares/todolist/issues"
+    "url": "https://github.com/ashraffares/weather-app/issues"
+  },
+  "homepage": "https://github.com/ashraffares/weather-app#readme",
+  "dependencies": {
+    "@babel/core": "^7.14.3",
+    "@babel/plugin-transform-modules-commonjs": "^7.14.0",
+    "@babel/preset-env": "^7.14.2",
+    "babel-eslint": "^10.1.0",
+    "babel-loader": "^8.2.2",
+    "css": "^3.0.0",
+    "css-loader": "^5.2.6",
+    "jest": "^27.0.4",
+    "loader": "^2.1.1",
+    "style-loader": "^2.0.0",
+    "eslint": "^7.26.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-plugin-import": "^2.23.2",
+    "stylelint": "^13.13.1",
+    "stylelint-config-standard": "^21.0.0",
+    "stylelint-csstree-validator": "^1.9.0"
   },
   "babel": {
     "env": {
@@ -56,5 +50,10 @@
         ]
       }
     }
+  },
+  "devDependencies": {
+    "eslint": "^7.28.0",
+    "webpack-cli": "^4.7.2",
+    "webpack-dev-server": "^3.11.2"
   }
 }
