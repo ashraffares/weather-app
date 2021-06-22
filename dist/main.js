@@ -1,5 +1,12 @@
 import './css/styles.css';
 
+const addinfo = (name, temp, description) => {
+    document.querySelector('.content').innerHTML = `
+      <span class="name">Country/City: ${name}</span>
+      <span class="temp">temperature: ${temp}</span>
+      <span class="description">Weather condition: ${description}</span>
+    `;
+  };
 
 const callapi = input => {
     fetch(
