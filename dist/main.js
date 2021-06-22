@@ -25,3 +25,6 @@ const callapi = input => {
       })
       .catch((err) => console.log('error: '.join(err)));
   };
+
+const getinput = () => document.querySelector('.input').value;
+document.querySelector('.submit').onclick = () => callapi(getinput());
