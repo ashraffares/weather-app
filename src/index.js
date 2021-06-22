@@ -8,6 +8,13 @@ const addinfo = (name, temp, description) => {
   `;
 };
 
+const errfun = (err) => {
+  const msg = document.createElement('h1');
+  msg.textContent = `Error: ${err}`;
+  msg.classList.add('errorh1');
+  document.body.appendChild(msg);
+};
+
 const callapi = input => {
   fetch(
     'http://api.openweathermap.org/data/2.5/weather?q='.concat(input).concat('&APPID=4d7121b3fcc151b2058bedb6f9a71d02'),
@@ -23,7 +30,7 @@ const callapi = input => {
 
       addinfo(name, temp, description);
     })
-    .catch((err) => console.log('error: '.join(err)));
+    .catch((err) => errfun(err));
 };
 
 const getinput = () => document.querySelector('.input').value;
