@@ -1,9 +1,25 @@
+* {
+  font-family: serif;
+}
 body {
   padding: 0;
   margin: 0;
-  background: linear-gradient(blue, #e0b0ff);
+  background: linear-gradient(rgb(47,150,163),rgb(48,62,143));
   background-repeat: no-repeat;
   height: 100vh;
+}
+
+#demo {
+  position: absolute;
+  top : 2%;
+  background: transparent;
+  color: #fff;
+  padding: 10px;
+  font-weight: bold;
+  font-size: 20px;
+  border: 2px solid #000;
+  border-radius: 40px;
+  cursor: pointer;
 }
 
 .form {
@@ -21,7 +37,7 @@ body {
 
 .form input:focus {
   outline: none;
-  border: 3px solid #e0b0ff;
+  border: 3px solid rgb(48,62,143);
 }
 
 .form button {
@@ -32,7 +48,7 @@ body {
   border-radius: 20px;
   font-weight: bold;
   font-size: 16px;
-  border: 3px solid #e0b0ff;
+  border: 3px solid rgb(48,62,143);
 }
 
 .content {
@@ -50,11 +66,14 @@ body {
   margin: 30px;
 }
 
-.errorh1 {
+.error {
   width: fit-content;
   margin: auto;
-  border: 3px solid red;
   padding: 10px;
   color: #fff;
   text-align: center;
+}
+
+.border {
+  border-left: 3px solid red;
 }

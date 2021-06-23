@@ -1,37 +1,51 @@
 import './css/styles.css';
 
+const x = document.getElementById('demo');
+
+const getLocation = () => {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(pos => {
+      const api = `https://api.openweathermap.org/data/2.5/weather?lat=${pos.coords.latitude}&lon=${pos.coords.longitude}&appid=4d7121b3fcc151b2058bedb6f9a71d02`;
+      callapi(api);
+    });
+  }
+};
+
+x.onclick = () => getLocation();
+
 const addinfo = (name, temp, description) => {
-  document.querySelector('.content').innerHTML = `
-    <span class="name">Country/City: ${name}</span>
-    <span class="temp">temperature: ${temp}</span>
-    <span class="description">Weather condition: ${description}</span>
-  `;
+  document.querySelector('.name').textContent = name;
+  document.querySelector('.temp').textContent = (((temp - 273.15) * (9 / 5)) + 32).toFixed(2);
+  document.querySelector('.deg').textContent = 'F';
+  document.querySelector('.description').textContent = description;
 };
 
-const errfun = (err) => {
-  const msg = document.createElement('h1');
-  msg.textContent = `Error: ${err}`;
-  msg.classList.add('errorh1');
-  document.body.appendChild(msg);
+const errfun = () => {
+  const error = document.querySelector('.error');
+  error.textContent = 'Somthing Went wrong please try again!';
+  error.classList.add('error');
+  error.classList.add('border');
 };
 
-const callapi = input => {
-  fetch(
-    'http://api.openweathermap.org/data/2.5/weather?q='.concat(input).concat('&APPID=4d7121b3fcc151b2058bedb6f9a71d02'),
+const callapi = api => {
+  fetch(api,
     {
       mode: 'cors',
-    },
-  )
+    })
     .then((response) => response.json())
     .then((data) => {
       const { name } = data;
       const { temp } = data.main;
       const { description } = data.weather[0];
-
       addinfo(name, temp, description);
     })
-    .catch((err) => errfun(err));
+    .catch(() => errfun());
 };
 
-const getinput = () => document.querySelector('.input').value;
-document.querySelector('.submit').onclick = () => callapi(getinput());
+const getinput = document.querySelector('.input');
+document.querySelector('.submit').addEventListener('click', e => {
+  e.preventDefault();
+  const api = `https://api.openweathermap.org/data/2.5/weather?q=${getinput.value}&appid=4d7121b3fcc151b2058bedb6f9a71d02`;
+  callapi(api);
+  getinput.value = '';
+});

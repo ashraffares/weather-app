@@ -9,14 +9,21 @@
 </head>
 
 <body>
-    <div class="form">
-        <input class="input" type="text" placeholder="Country or City">
-        <button class="submit">
-            submit
-        </button>
-    </div>
+
+    <button id='demo'>Location</button>
+    <form class="form">
+        <input class="input" type="text" placeholder="Country or City" required>
+        <button type="submit" class="submit">submit </button>
+    </form>
     <div class="content">
+    <span class="name"></span>
+    <div>
+        <span class="temp"></span>
+        <span class='deg'></span>
     </div>
+    <span class="description"></span>
+    </div>
+    <h1 class="error"></h1>
     <script src="main.js"></script>
 </body>
 
