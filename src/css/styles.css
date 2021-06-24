@@ -77,3 +77,12 @@ body {
 .border {
   border-left: 3px solid red;
 }
+
+.deg {
+  cursor: pointer;
+}
+
+.describe-weather {
+  display: flex;
+  justify-content: center;
+}

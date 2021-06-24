@@ -1,51 +1,45 @@
 import './css/styles.css';
+import Api from './js/api';
+import Convert from './js/convert';
+
+let lat;
+let long;
+
+(() => {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition((pos) => {
+      lat = pos.coords.latitude;
+      long = pos.coords.longitude;
+    });
+  }
+})();
 
 const x = document.getElementById('demo');
 
-const getLocation = () => {
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(pos => {
-      const api = `https://api.openweathermap.org/data/2.5/weather?lat=${pos.coords.latitude}&lon=${pos.coords.longitude}&appid=4d7121b3fcc151b2058bedb6f9a71d02`;
-      callapi(api);
-    });
+x.onclick = () => {
+  const link = Api.callbygeo(lat, long);
+  Api.callapi(link);
+};
+
+const degree = document.querySelector('.deg');
+degree.addEventListener('click', () => {
+  const temp = document.querySelector('.temp');
+  let changetemp = temp.textContent;
+  const degtext = degree.textContent;
+  if (degtext === 'F') {
+    degree.textContent = 'C';
+    changetemp = parseFloat(changetemp);
+    temp.textContent = Convert.FtoC(changetemp);
+  } else if (degtext === 'C') {
+    degree.textContent = 'F';
+    temp.textContent = Convert.CtoF(changetemp);
   }
-};
+});
 
-x.onclick = () => getLocation();
-
-const addinfo = (name, temp, description) => {
-  document.querySelector('.name').textContent = name;
-  document.querySelector('.temp').textContent = (((temp - 273.15) * (9 / 5)) + 32).toFixed(2);
-  document.querySelector('.deg').textContent = 'F';
-  document.querySelector('.description').textContent = description;
-};
-
-const errfun = () => {
-  const error = document.querySelector('.error');
-  error.textContent = 'Somthing Went wrong please try again!';
-  error.classList.add('error');
-  error.classList.add('border');
-};
-
-const callapi = api => {
-  fetch(api,
-    {
-      mode: 'cors',
-    })
-    .then((response) => response.json())
-    .then((data) => {
-      const { name } = data;
-      const { temp } = data.main;
-      const { description } = data.weather[0];
-      addinfo(name, temp, description);
-    })
-    .catch(() => errfun());
-};
-
-const getinput = document.querySelector('.input');
 document.querySelector('.submit').addEventListener('click', e => {
   e.preventDefault();
-  const api = `https://api.openweathermap.org/data/2.5/weather?q=${getinput.value}&appid=4d7121b3fcc151b2058bedb6f9a71d02`;
-  callapi(api);
-  getinput.value = '';
+  const name = document.querySelector('.name');
+  const link = Api.callbycity(name.value);
+  Api.callapi(link);
+  name.value = '';
 });
